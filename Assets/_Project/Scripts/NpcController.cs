@@ -1,11 +1,12 @@
-using Unity.VisualScripting;
-using UnityEditor.Rendering;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class NpcController : MonoBehaviour
 {
-    [SerializeField, Range(0f, 10f)] private float _smoothSpeed = 5f;
+    /*
+     * [Tooltip ("Interpolate movement")]
+     * [SerializeField, Range(0f, 10f)] private float _smoothSpeed = 5f;
+    */
+
     [SerializeField, Range(0f, 30f)] private float _speed = 10.5f;
     [SerializeField] private Transform _target;
 
@@ -44,10 +45,8 @@ public class NpcController : MonoBehaviour
         _virtualTarget = temp.transform;
     }
 
-    private void Update()
-    {
+    private void Update() =>
         MoveToTarget();
-    }
 
     private void OnTargetLost()
     {

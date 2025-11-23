@@ -14,11 +14,6 @@ public class RouteManager : MonoBehaviour
     private Coroutine _routine;
     private WaitForSeconds _wait;
 
-    /*
-     * Enqueue - enter -> добавить элемент в очередь
-     * Dequeue - 'delete' -> вытащить элемент из очереди
-     */
-
     private void Awake()
     {
         _waypoints ??= new Queue<Vector3>();
@@ -34,7 +29,7 @@ public class RouteManager : MonoBehaviour
 
     private Vector3 GetNextWaypoint()
     {
-        //чтобы очередь не заканчивалась, добавляю тот же путь в конец queue
+        //for endless queue add dequeue-element back in queue
 
         if (_waypoints.TryDequeue(out Vector3 nextWaypoint))
             _waypoints.Enqueue(nextWaypoint);
@@ -56,13 +51,8 @@ public class RouteManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        if (_routine != null)
-            StopCoroutine(_routine);
-
-        _routine = StartCoroutine(StartRouteManager(_npc));
-    }
+    private void OnEnable() =>
+         _routine = StartCoroutine(StartRouteManager(_npc));
 
     private void OnDisable()
     {
