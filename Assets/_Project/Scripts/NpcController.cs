@@ -69,22 +69,21 @@ public class NpcController : MonoBehaviour
 
         Debug.DrawRay(transform.position, direction, Color.red);
 
-        /*
-        Debug.Log($"{transform.position}  -> " +
-                    $" {_target.position} \n" +
-                    $"<color=green>{direction}</color>\n" +
-                    $"<color=red>{direction.magnitude}</color> <= " +
-                    $"<color=cyan>{_minDistanceToTarget}</color>\n");
-        */
-
         if (direction.magnitude <= _minDistanceToTarget)
         {
             OnTargetReached();
             return;
         }
 
+        FlipLookAccordingDirection(direction);
+
         MoveStraight(direction.normalized, _speed);
-        //MoveSmoothly(_target.position, _smoothSpeed);
+    }
+
+    private void FlipLookAccordingDirection(Vector3 direction)
+    {
+        if (direction != Vector3.zero)
+            this.transform.rotation = Quaternion.LookRotation(direction);
     }
 
     private void MoveStraight(Vector3 direction, float speed) =>
