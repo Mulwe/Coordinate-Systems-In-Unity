@@ -427,7 +427,7 @@ MonoBehaviour:
   _player: {fileID: 451903650}
   _npc: {fileID: 1837763831}
   _resetKey: 32
-  _npcZoneRadius: 5
+  _npcZoneRadius: 5.05
   _timeOutsideNpcZone: 5
   _timeInsideNpcZone: 10
 --- !u!4 &409871142 stripped
@@ -586,6 +586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
+  _rotationSpeed: 400
 --- !u!4 &451903653
 Transform:
   m_ObjectHideFlags: 0
@@ -974,8 +975,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a741ea7f615ae1c45bb67db3783d799a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _smoothSpeed: 1
   _speed: 5
+  _rotationSpeed: 400
   _target: {fileID: 11462903}
 --- !u!4 &1837763832
 Transform:

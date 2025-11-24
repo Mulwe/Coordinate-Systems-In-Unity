@@ -1,5 +1,3 @@
-using Mono.Cecil.Cil;
-using Unity.Mathematics.Geometry;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
