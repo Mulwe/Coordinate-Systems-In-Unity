@@ -2,12 +2,8 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
-    /*
-     * [Tooltip ("Interpolate movement")]
-     * [SerializeField, Range(0f, 10f)] private float _smoothSpeed = 5f;
-    */
-
     [SerializeField, Range(0f, 30f)] private float _speed = 10.5f;
+    [SerializeField] private float _rotationSpeed = 400f;
     [SerializeField] private Transform _target;
 
     private Transform _virtualTarget;
@@ -74,19 +70,12 @@ public class NpcController : MonoBehaviour
             return;
         }
 
-        FlipLookAccordingDirection(direction);
+        Vector3 normalizedDirection = direction.normalized;
 
-        MoveStraight(direction.normalized, _speed);
+        transform.MoveOn(normalizedDirection, _speed);
+
+        transform.FlipRotationLook(normalizedDirection, _rotationSpeed);
     }
-
-    private void FlipLookAccordingDirection(Vector3 direction)
-    {
-        if (direction != Vector3.zero)
-            this.transform.rotation = Quaternion.LookRotation(direction);
-    }
-
-    private void MoveStraight(Vector3 direction, float speed) =>
-        this.transform.Translate(speed * Time.deltaTime * direction, Space.World);
 
     private void MoveSmoothly(Vector3 targetPosition, float smoothSpeed) =>
         this.transform.position =

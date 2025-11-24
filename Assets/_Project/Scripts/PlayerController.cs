@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField, Range(1f, 15f)] private float _speed;
+    [SerializeField] private float _rotationSpeed = 400f;
+
     private Transform _player;
 
     private Vector3 _defaultPosition;
@@ -38,16 +40,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 normalizedDirection = direction.normalized;
 
-        FlipLook(normalizedDirection);
-        MoveOn(normalizedDirection);
-    }
+        transform.MoveOn(normalizedDirection, _speed);
 
-    private void FlipLook(Vector3 direction)
-    {
-        if (direction != Vector3.zero)
-            _player.rotation = Quaternion.LookRotation(direction);
+        transform.FlipRotationLook(normalizedDirection, _rotationSpeed);
     }
-
-    private void MoveOn(Vector3 direction) =>
-        _player.transform.Translate(direction * _speed * Time.deltaTime, Space.World);
 }
